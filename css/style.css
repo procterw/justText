@@ -1,0 +1,49 @@
+body {
+    background: #eee;
+    padding: 2rem;
+}
+
+.new-log {
+    margin: 2rem;
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+}
+
+.log-preview {
+    height: 100px;
+    background-color: rgb(255,255,255);
+    display: inline-block;
+    padding: 10px;
+}
+
+.log-preview:hover {
+    background-color: rgb(230,230,230);
+}
+
+
+.dropzone {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 30px;
+  margin: 20px;
+}
+
+.dropzone-active {
+    background-color: white;
+}
+
+.image-container {
+    width: 300px;
+    height: 300px;
+}
+
+.image-container img {
+   max-width: 100%;   
+}

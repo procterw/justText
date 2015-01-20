@@ -1,0 +1,14 @@
+<button ng-click="logout()">Log out</button>
+<!-- <div class="new-log" ng-include="newLogTemplate" ng-controller="NewLogCtrl"></div> -->
+<!-- <div class="new-log" ng-include="viewLogTemplate" ng-controller="ViewLogCtrl"></div> -->
+
+<h1>{{user.name}}</h1>
+<h3>Notes</h3>
+<input ng-model="noteText"></input>
+<div class="log-preview" ng-repeat="log in user.logs" ng-click="viewLog(log)">{{log.title}}
+	<button ng-click="deleteLog(log)">X</button>
+</div>
+<div ng-repeat="note in notes">
+	<a ui-sref="editor({ id:note.id })">{{note}}</a>
+</div>
+<button ng-click="newnote()">New Note</button>
