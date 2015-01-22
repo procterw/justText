@@ -1,6 +1,12 @@
-<div>
+<div class="editor">
 
-	TEST WHAT WHAT OHHH SNAP
-	{{params}}
+	{{note}}
+
+	<button ng-click="back()">Go back</button>
+
+	<input class="title" ng-model="note.title">
+
+	<textarea class="body" elastic ng-model="note.body"></textarea>
+	
 
 </div>
