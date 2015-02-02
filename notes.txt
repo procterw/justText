@@ -1,3 +1,0 @@
-CLIENT ID 81591834827-j6ogjj8t0341pp2rjjgalp8qrd62m3h0.apps.googleusercontent.com EMAIL ADDRESS  81591834827-j6ogjj8t0341pp2rjjgalp8qrd62m3h0@developer.gserviceaccount.com  CLIENT SECRET  -l-IhsWJJmZZz03rqeoJStSc  REDIRECT URIS  none  JAVASCRIPT ORIGINS 
-http://localhost
-https://willleahy.info

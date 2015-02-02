@@ -1,0 +1,17 @@
+<button ng-click="logout()">Log out</button>
+
+<!-- <div class="login-cover" ng-include="'templates/login.html'" ng-show="!user"></div> -->
+<h1>{{user.name}}</h1>
+<h3>Notes</h3>
+<input ng-model="noteText"></input>
+<div class="log-preview" ng-repeat="log in user.logs" ng-click="viewLog(log)">{{log.title}}
+	<button ng-click="deleteLog(log)">X</button>
+</div>
+<div ng-repeat="note in user.notes">
+	<a ui-sref="editor({ id:note.id })">
+		<h3>{{note.title || "Untitled Note"}}</h3>
+	</a>
+		<p>{{note.snippet}}</p>
+		<button ng-click="deleteNote(note, $index)">Delete</div>
+</div>
+<button ng-click="newNote()">New Note</button>
