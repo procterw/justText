@@ -36,7 +36,6 @@ angular.module("App")
 				return UserService.model.notes.length;
 			}
 		}, function(){
-			console.log("OKAY THEN");
 			if(Parse.User.current() && !$scope.user) {
 				UserService.buildModel(Parse.User.current(), function(user) {
 					$scope.user = UserService.model;

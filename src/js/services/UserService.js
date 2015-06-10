@@ -65,11 +65,11 @@ angular.module("App")
 
 	// Save note changes to model
 	P.saveNote = function(note) {
-		var index;
+		var index = -1;
 		angular.forEach(P.model.notes, function(n, i) {
 			if (note.id == n.id) { index = i; }
 		});
-		if (index) {
+		if (index > -1) {
 			note.snippet = note.body.substring(0,25);
 			P.model.notes[index] = note;
 		} else {

@@ -27,7 +27,7 @@ angular.module("App")
 					NoteService.save($scope.note, function(){ });
 				}
 				note = angular.copy($scope.note);
-			}, 2000);
+			}, 5000);
 		})();
 		
 		

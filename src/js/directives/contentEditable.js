@@ -3,7 +3,11 @@ directive('contenteditable', ['$sce', function($sce) {
   return {
     restrict: 'A', // only activate on element attribute
     require: '?ngModel', // get a hold of NgModelController
+    scope: {
+      selected: "="
+    },
     link: function(scope, element, attrs, ngModel) {
+      
       if (!ngModel) return; // do nothing if no ng-model
 
       // Specify how UI should be updated
@@ -28,20 +32,16 @@ directive('contenteditable', ['$sce', function($sce) {
           var newSpan = angular.element(window.getSelection().anchorNode);
         }
 
-        // DELETE
-        if(event.keyCode == 8) {
-          // if(!element.html()) {
-          //   element.html('<p><br></p>');
-          // }
-        }
-
       });
 
+      // Keydown
       element.on('keydown', function(e) {
+        // Enter key
         if(event.keyCode == 13) {
           document.execCommand('formatBlock', false, 'p');
           return;
         }
+        // Delete key
         if(event.keyCode == 8) {
           if(element.text() < 1) {
             event.preventDefault();
