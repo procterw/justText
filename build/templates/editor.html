@@ -2,9 +2,13 @@
 
 	<button ng-click="back()">Go back</button>
 
-	<input ng-model="note.title"></input>
+	
+	<div class="loading-cover" ng-show="isLoading"> 
+		<div class="sk-spinner sk-spinner-rotating-plane"></div>
+	</div>
 
 	<form name="demo">
+			<input ng-model="note.title" class="title"></input>
       <div ng-model="note.body" medium-editor></div>
   </form>
 	

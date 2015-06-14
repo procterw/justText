@@ -3,11 +3,22 @@
 angular.module("App")
 	.factory("UserService", function() {
 
-	var P = {};
+	// make an example snippet
+	function makeSnippet(str) {
+		var div = document.createElement("div");
+		div.innerHTML = str;
+		var snip = "";
 
-	var removeTags = function(text) {
-		return text;
-	};
+		angular.forEach(angular.element(div).children(), function(c) {
+			snip += " " + (c.textContent || c.innerText || "");
+		});
+		snip = snip.replace(/\s\s+/g, ' ');
+		snip = snip.substring(0,50);
+		if (snip.length > 49) snip += "...";
+		return snip;
+	}
+
+	var P = {};
 
 	// Create a new user. Get name from Facebook, set blank array of logs
 	P.newUser = function(user, callback) {
@@ -36,17 +47,32 @@ angular.module("App")
 			P.model.name = user.get("name");
 			P.model.id = user.id;
 			P.model.notes = [];
+			P.model.notebooks = [];
 			angular.forEach(notes, function(n){
 				var note = {
 					title: n.get("title"),
 					body: n.get("body"),
-					id: n.id,
+					notebook: n.get("notebook"),
+					id: n.id
 				};
-				note.snippet = removeTags(note.body).substring(0,25);
-				// note.title = note.title || "Untitled Note";
+				note.snippet = makeSnippet(note.body);
 				P.model.notes.push(note);
 			});
-			callback(P.model);
+
+			// Now get notebooks
+			query = new Parse.Query("Notebook");
+			query.equalTo("parent", user);
+			query.find().then(function(notebooks){
+				angular.forEach(notebooks, function(n) {
+					P.model.notebooks.push({
+						title: n.get("title"),
+						id: n.id
+					});
+				});
+				callback(P.model);
+			});
+
+			
 		});
 		
 	};
@@ -65,15 +91,15 @@ angular.module("App")
 
 	// Save note changes to model
 	P.saveNote = function(note) {
+		note.snippet = makeSnippet(note.body);
+		console.log(note);
 		var index = -1;
 		angular.forEach(P.model.notes, function(n, i) {
 			if (note.id == n.id) { index = i; }
 		});
 		if (index > -1) {
-			note.snippet = note.body.substring(0,25);
 			P.model.notes[index] = note;
 		} else {
-			note.snippet = removeTags(note.body).substring(0,25);
 			P.model.notes.push(note);
 		}
 	};
@@ -83,6 +109,14 @@ angular.module("App")
 		var query = new Parse.Query("Note");
 		query.get(note.id).then(function(note){
 			note.destroy();
+		});
+	};
+
+	P.deleteNotebook = function(notebook, i, callback) {
+		if (i > -1) { P.model.notebooks.splice(i, 1); }
+		var query = new Parse.Query("Notebook");
+		query.get(notebook.id).then(function(notebook) {
+			notebook.destroy();
 		});
 	};
 

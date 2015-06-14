@@ -4,12 +4,17 @@ angular.module("App")
 		// search terms
 		$scope.searchString = "";
 
-		// $scope.notes = [
-		// 	{title: "Note1", id:"84dfrhsi8tyurh8h", sample: "This, of course, was the first note, of course, a horse..."},
-		// 	{title: "Note2", id:"475uyrsfhwes47ts", sample: "This one is a recipe Onions Tomato 6 Apples 1 Can of..."}
-		// ]
+		$scope.notebook = NoteService.notebook;
 
-		// 
+		$scope.notebookName = {
+			name: ""
+		};
+
+		$scope.openNote = function(note,id) {
+			$state.go("editor", {id: id});
+			NoteService.setModel(note);
+		};
+
 		$scope.newNote = function() {
 			// change state to editor
 			NoteService.newNote(function(id){
@@ -17,10 +22,31 @@ angular.module("App")
 			});
 		};
 
+		$scope.openNotebook = function(notebook) {
+			if (!notebook) notebook = { title: "" };
+			NoteService.notebook = notebook;
+			$scope.notebook = notebook;
+			// $scope.$apply();
+		};
+
+		$scope.newNotebook = function(title) {
+			$scope.notebookName.name = "";
+			$scope.user.notebooks.push({ title: title });
+			$scope.notebook = { title: title };
+			NoteService.newNotebook(title, function(notebook) {
+				
+			});
+		};
+
 		$scope.deleteNote = function(note, i) {
 			UserService.deleteNote(note, i, function(model){
 				
 			});
+		};
+
+		$scope.deleteNotebook = function(notebook, i) {
+			if (notebook.title == $scope.notebook.title) $scope.notebook = { title: "" };
+			UserService.deleteNotebook(notebook, i);
 		};
 
 		$scope.logout = function(){
@@ -43,10 +69,5 @@ angular.module("App")
 				});
 			}
 		}, true);
-
-		// if(UserService.model === null && Parse.User.current()) {
-			
-		// }
-
 
 }]);

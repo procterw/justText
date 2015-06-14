@@ -1,13 +1,18 @@
 angular.module("App")
 	.controller("EditorCtrl", ["$scope", "$state", "NoteService", "UserService", function($scope, $state, NoteService, UserService) {
 
-		// $scope.params = $state.params;
+		$scope.isLoading = true;
 
 		NoteService.buildModel($state.params.id, function(note) {
 			$scope.note = note;
-			$scope.$apply();
+			$scope.isLoading = false;
+			// $scope.$apply();
 		});
 
+		
+
+		// When you go back, clear the time interval
+		// Save the note to the server and to the user model
 		$scope.back = function() {
 			clearInterval(TI);
 			UserService.saveNote($scope.note);
@@ -27,7 +32,7 @@ angular.module("App")
 					NoteService.save($scope.note, function(){ });
 				}
 				note = angular.copy($scope.note);
-			}, 5000);
+			}, 10000);
 		})();
 		
 		

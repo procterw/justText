@@ -21,6 +21,8 @@ angular.module('App')
             bindOpts = scope.bindOptions;
           }
           opts = angular.extend(opts, bindOpts);
+          opts.staticToolbar = true;
+          opts.toolbarAlign = "left";
         };
         prepOpts();
         placeholder = opts.placeholder;

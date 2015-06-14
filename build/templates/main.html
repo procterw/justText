@@ -1,18 +1,46 @@
 <button ng-click="logout()">Log out</button>
 
-<!-- <div class="login-cover" ng-include="'templates/login.html'" ng-show="!user"></div> -->
-<h1>{{user.name}}</h1>
-<h3>Notes</h3>
-<input ng-model="noteText"></input>
-<div class="log-preview" ng-repeat="log in user.logs" ng-click="viewLog(log)">{{log.title}}
-	<button ng-click="deleteLog(log)">X</button>
+<div class="notebook-wrapper">
+	<div class="notebook">
+
+
+		<div class="header">
+			
+				<h2>{{notebook.title || "All Notes"}}</h2>
+
+				<span class="search">
+					<input ng-model="searchString"></input><i class="material-icons search-icon">search</i>
+				</span>
+
+		</div>
+
+		<div 
+			class="note paper" 
+			ng-repeat="note in user.notes | filter:{notebook:notebook.title} | filter:{body:searchString}" 
+			ng-click="openNote(note,note.id)">
+
+				<h1>{{note.title || "Untitled Note"}}</h1>
+				<p>{{note.snippet}}</p>
+				<p>{{note.notebook}}</p>
+				<button ng-click="deleteNote(note, $index)">Delete</button>
+
+		</div><div class="note new-note paper" ng-click="newNote()"> + </div>
+
+	</div>	
 </div>
-{{user}}
-<div ng-repeat="note in user.notes">
-	<a ui-sref="editor({ id:note.id })">
-		<h3>{{note.title || "Untitled Note"}}</h3>
-	</a>
-		<p>{{note.snippet}}</p>
-		<button ng-click="deleteNote(note, $index)">Delete</div>
+
+
+
+<div class="notebooks-wrapper">
+	<div class="notebooks">
+
+		<div class="notebook" ng-click="openNotebook(false)">All Notes</div>
+		<div class="notebook" ng-repeat="notebook in user.notebooks" ng-click="openNotebook(notebook)">
+			{{notebook.title}}
+			<button ng-click="deleteNotebook(notebook, $index)">Delete</button>
+		</div>
+		<input ng-model="notebookName.name"></input>
+		<button ng-click="newNotebook(notebookName.name)">+</button>
+		
+	</div>
 </div>
-<button ng-click="newNote()">New Note</button>
