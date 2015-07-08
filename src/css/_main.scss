@@ -1,0 +1,282 @@
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/* INDIVIDUAL NOTEBOOK DISPLAY */
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+
+.logout {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.notebook-wrapper {
+
+  position: absolute;
+  top: 0;
+  
+  bottom: 0;
+  right: 0;
+  left: 250px;
+
+  .notebook {
+    width: 690px;
+    margin: 30px auto;
+  }
+
+  .new-note {
+    font-weight: 500;
+    font-size: 16px;
+    float: right;
+    background-color: white;
+    padding: 6px 15px;
+    color: #555;
+    margin: 14px 0;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .header {
+    margin: 5px;
+    vertical-align: center;
+
+    h2 {
+      margin-left: 12px;
+      display:inline-block;
+    }
+  }
+
+  
+
+  .search {
+    @extend .input-bar-mix;
+
+    input {
+      @extend .input-mix;
+    }
+
+    .search-icon {
+      color: $grey3;
+      padding: 5px 6px;
+      font-size: 21px;
+      vertical-align: middle;
+    }
+
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+    .rotate {
+      -webkit-animation:spin 0.2s linear;
+      -moz-animation:spin 0.2s linear;
+      animation:spin 0.2s linear;
+    }
+
+
+  }
+
+  /* -------------------------------------------- */
+  /* -------------------------------------------- */
+  /* NOTE */
+  /* -------------------------------------------- */
+  /* -------------------------------------------- */
+
+  .note {
+    vertical-align: text-top;
+    display: inline-block;
+    width: 220px;
+    height: 170px;
+    /*padding: 5px 15px;*/
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+
+    h1 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .container {
+      margin: 5px 15px;
+      position: relative;
+    }
+/*
+    .shadow {
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      z-index: 100;
+      margin-top: -100px;
+      -webkit-box-shadow: inset 0px -53px 50px -24px rgba(255,255,255,1);
+      -moz-box-shadow: inset 0px -53px 50px -24px rgba(255,255,255,1);
+      box-shadow: inset 0px -53px 50px -24px rgba(255,255,255,1);    
+    }*/
+
+    p {
+      font-size: 14px;
+      font-weight: 300;
+      color: #999;
+      /* font-style: italic; */
+      font-family: Roboto;
+      height: 100px;
+      margin-bottom: 0;
+      overflow: hidden;
+      margin-top: 10px;
+      line-height: 20px;
+    }
+
+  }
+
+}
+
+
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/* NOTEBOOKS SIDEBAR */
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+
+.notebooks-wrapper {
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  background-color: rgb(253,253,253);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+
+  h4 {
+    margin: 0;
+  }
+
+  /* -------------------------------------------- */
+  /* NOTEBOOK WRAPPER */
+  /* -------------------------------------------- */
+
+  .notebooks {
+
+    margin: 42px 0;
+
+    .notebook {
+      font-weight: 500;
+      /* text-transform: uppercase; */
+      position: relative;
+      padding: 10px 15px;
+      border-top: 1px solid #EEE;
+      /* transition: margin 0.3s; */
+      cursor: pointer;
+    }
+
+    .note-count {
+      color: #CCC;
+    }
+
+    .notebook:hover {
+      /*margin: -5px 0 5px;*/
+    }
+
+    .selected {
+      font-weight: 700;
+    }
+
+  }
+
+  /* -------------------------------------------- */
+  /* DELETE ICON */
+  /* -------------------------------------------- */
+
+  .delete {
+
+    position: absolute;
+    right: 15px;
+    /*top: 7px;*/
+    opacity: 1;
+    transition: all 0.3s;
+
+    i {
+      color: white;
+      font-size: 21px;
+      background-color: $grey2;
+      transition: background-color 0.5s;
+      border-radius: 15px;
+      padding: 2px;
+    }
+
+    i:hover {
+      background-color: $red;
+    }
+
+  }
+
+  .delete.ng-hide {
+    right: 0px;
+    opacity: 0;
+  }
+
+  /* -------------------------------------------- */
+  /* ADD NOTEBOOK BUTTON */
+  /* -------------------------------------------- */
+
+  .add {
+
+    width: 100%;
+    position: relative;
+    padding: 0 15px;
+    border-top: 1px solid #EEE;
+
+    span {
+      @extend .input-bar-mix;
+      width: 100%;
+    }
+
+    input {
+      @extend .input-mix;
+      width: 80%;
+    }
+
+    .button-wrapper {
+      -webkit-transition: box-shadow 0.2s;
+      transition: box-shadow 0.2s;
+      display: inline-block;
+      /* width: 10px; */
+      width: 15%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .button-wrapper i {
+      font-size: 18px;
+    }
+
+    button {
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      color: #888;
+      text-align: center;
+      padding: 0;
+      /* width: 15%; */
+    }
+
+    .button-wrapper:hover {
+      @include shadow-d2();
+    }
+
+    button.disabled {
+      background-color: #EEEDED;
+    }
+
+    button.disabled:hover {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+
+  }
+
+}
+

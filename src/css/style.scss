@@ -1,24 +1,74 @@
-$font-stack:    'Droid Serif', serif;
-$primary-color: #444;
-$light-color: #aaa;
+$font-serif: 'Roboto Slab', serif;
+$font-sans: 'Roboto', sans-serif;
+$grey1: #F5F5F5;
+$grey2: #EEE;
+$grey3: #CCC;
+$grey4: #999;
+$grey5: #555;
+$red: #e74c3c;
+
+h1, h2, h3 {
+  /*font-family: $font-serif;*/
+}
+
+.input-bar-mix {
+  display: inline-block;
+  float: right;
+  background-color: $grey2;
+  margin: 14px 0;
+}
+
+.input-mix {
+  border: 0;
+  background-color: transparent;
+  padding: 5px;
+  font-size: 16px;
+  text-align: right;
+  color: $grey4;
+  font-style: italic;
+  border-right: 1px solid rgb(230,230,230);
+}
+
+.input-mix:hover, .input-mix:active, .input-mix:focus {
+  background-color: $grey3;
+}
+
+@mixin shadow-transition() {
+  -webkit-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+}
+
+@mixin shadow-d1() {
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.11);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.11);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.11);
+}
+
+@mixin shadow-d2() {
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+  -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+}
+
+
+
 
 html {
   height: 100%;
 }
 
 body {
-  background: rgb(250,250,250);
+  background: $grey1;
   padding: 0;
   margin: 0;
   height: 100%;
-  font: 100% $font-stack;
-  color: $primary-color;
+  font: 100% $font-sans;
+  color: $grey5;
 }
 
 form {
   width: 800px;
   margin: 40px auto;
-  /*background-color: white;*/
 }
 
 div {
@@ -31,212 +81,29 @@ input, textarea, select, a { outline: none; user-select: none; }
 textarea:focus, input:focus{ outline: 0; }
 
 input {
-  font: 100% $font-stack;
+  font: 100% $font-sans;
+}
+
+i {
+  cursor: pointer;
 }
 
 
-/*
-.medium-editor-toolbar {
-  visibility: visible;
-}
 
-.medium-editor-toolbar li {
-  float: none;
-}
-
-.medium-editor-toolbar li button {
-  width: 100%;
-  margin: 0;
-}
-
-*/
 
 .view {
   height: 100%;
 }
 
-.editor {
-
-  height: 100%;
-
-  p, blockquote {
-    font-size: 18px;
-    line-height: 28px;
-    margin: 18px 0;
-  }
-
-  blockquote {
-    font-style: italic;
-    border-left: 2px solid rgb(200,200,200);
-    padding-left: 9px;
-    color: $light-color;
-  }
-
-  h3 {
-    font-size: 24px;
-  }
-
-  h4 {
-    font-size: 18px;
-  }
-
-  .title {
-    box-sizing: border-box;
-    width: 100%;
-    border: none;
-    background-color: transparent;
-    padding: 15px 70px;
-    font: 100% $font-stack;
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 28px;
-    color: $primary-color;
-  }
-
-  .title:focus, .title:hover {
-    background-color: rgb(245,245,245);
-  }
-
-
-
-}
-
-
-/*.medium-editor-placeholder:after {
-  font-size: 18px;
-  color: rgb(200,200,200);
-}*/
-
-.angular-medium-editor {
-  background-color: rgb(255,255,255);
-  padding: 20px 70px;
-  min-height: 500px;
-}
-
-
-.notebook-wrapper {
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 250px;
-
-  .notebook {
-    width: 690px;
-    margin: 30px auto;
-  }
-
-  .header {
-    margin: 15px;
-    vertical-align: center;
-
-    h2 {
-      display:inline-block;
-    }
-
-
-
-  }
-
-  
-
-  .search {
-    display: inline-block;
-    float:right;
-    background-color: rgb(245,245,245);
-    margin: 14px 0;
-
-    input {
-      border: 0;
-      background-color: transparent;
-      padding: 5px;
-      font-size: 18px;
-      text-align: right;
-      color: $light-color;
-      font-style: italic;
-      border-right: 1px solid rgb(230,230,230);
-    }
-
-    .search-icon {
-      color: $light-color;
-      padding: 5px 6px;
-      font-size: 21px;
-      vertical-align: middle;
-    }
-
-
-  }
-
-
-
-
-  .note {
-    vertical-align: text-top;
-    display: inline-block;
-    width: 220px;
-    height: 190px;
-    padding: 5px 15px;
-    background-color: white;
-    margin: 5px;
-    cursor: pointer;
-
-    h1 {
-      font-size: 18px;
-    }
-
-    p {
-      font-size: 14px;
-      color: $light-color;
-      font-style: italic;
-    }
-
-  }
-
-}
-
-
 .paper {
-  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.11);
-  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.11);
-  box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.11);
-  -webkit-transition: box-shadow 0.5s;
-  transition: box-shadow 0.5s;
+  @include shadow-d1();
+  @include shadow-transition();
 }
 
 .paper:focus, .paper:hover {
   outline: none;
-  -webkit-box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.11);
-  -moz-box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.11);
-  box-shadow: 0px 3px 3px 2px rgba(0,0,0,0.11);
+  @include shadow-d2();
 }
-
-
-.notebooks-wrapper {
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 250px;
-  background-color: rgb(253,253,253);
-  border-right: 1px solid rgb(240,240,240);
-
-  .notebooks {
-
-    margin: 30px 15px;
-
-    .notebook {
-
-    }
-
-  }
-
-}
-
-
-
-
 
 .loading-cover {
   position: absolute;
@@ -244,6 +111,7 @@ input {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 999;
   background-color: rgba(0,0,0,0.3);
 }
 
@@ -285,3 +153,22 @@ input {
             transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
 
 
+
+.fade-out {
+  opacity: 1;
+}
+
+.fade-out.ng-hide-add.ng-hide-add-active,
+.fade-out.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+
+.fade-out.ng-hide {
+  opacity: 0;
+}
+
+
+@import "main";
+@import "editor";
+@import "login";

@@ -1,4 +1,8 @@
-<button ng-click="logout()">Log out</button>
+<button class="logout" ng-click="logout()">Log out</button>
+
+<div class="loading-cover fade-out" ng-show="isLoading"> 
+	<div class="sk-spinner sk-spinner-rotating-plane"></div>
+</div>
 
 <div class="notebook-wrapper">
 	<div class="notebook">
@@ -6,25 +10,31 @@
 
 		<div class="header">
 			
-				<h2>{{notebook.title || "All Notes"}}</h2>
+				<h2>{{notebook.title || "All Notes"}} </h2>
 
-				<span class="search">
-					<input ng-model="searchString"></input><i class="material-icons search-icon">search</i>
-				</span>
+				<span class="new-note paper">New Note</span>
+
+				<search-bar />
+
+
 
 		</div>
 
 		<div 
 			class="note paper" 
-			ng-repeat="note in user.notes | filter:{notebook:notebook.title} | filter:{body:searchString}" 
+			ng-repeat="note in user.notes | filter:{notebook:notebook.title} | searchFilter:{body:searchString}" 
 			ng-click="openNote(note,note.id)">
 
-				<h1>{{note.title || "Untitled Note"}}</h1>
-				<p>{{note.snippet}}</p>
-				<p>{{note.notebook}}</p>
-				<button ng-click="deleteNote(note, $index)">Delete</button>
+				<div class="container">
 
-		</div><div class="note new-note paper" ng-click="newNote()"> + </div>
+					<h1>{{note.title || "Untitled Note"}}</h1>
+					<p>{{note.snippet}}</p>
+					<!-- <div class="shadow"></div> -->
+					<!-- <button ng-click="deleteNote(note, $index)">Delete</button> -->
+
+				</div>
+
+		</div>
 
 	</div>	
 </div>
@@ -34,13 +44,19 @@
 <div class="notebooks-wrapper">
 	<div class="notebooks">
 
-		<div class="notebook" ng-click="openNotebook(false)">All Notes</div>
-		<div class="notebook" ng-repeat="notebook in user.notebooks" ng-click="openNotebook(notebook)">
-			{{notebook.title}}
-			<button ng-click="deleteNotebook(notebook, $index)">Delete</button>
+		<!-- <h2>Notebooks</h2> -->
+
+		<div class="notebook" ng-click="openNotebook(false)" ng-class="{selected:!notebook.title}">All Notes <span class="note-count">| {{notebookTally('all')}}</span></div>
+		
+		<div class="notebook" ng-repeat="nbook in user.notebooks" ng-click="openNotebook(nbook)" ng-class="{selected:nbook.title===notebook.title}" ng-mouseover="showDelete=true" ng-mouseleave="showDelete=false">
+			{{nbook.title}} <span class="note-count">| {{notebookTally(nbook.title)}}</span>
+			<span class="delete" ng-show="showDelete" ng-click="deleteNotebook(nbook, $index)"><i class="material-icons icon">delete</i></span>
 		</div>
-		<input ng-model="notebookName.name"></input>
-		<button ng-click="newNotebook(notebookName.name)">+</button>
+
+		<div class="add">
+			<span><input ng-model="notebookName.name"></input><div class="button-wrapper"><button ng-click="newNotebook(notebookName.name)"><i class="material-icons">add_circle</i></button></div></span>
+		</div>
+		
 		
 	</div>
 </div>

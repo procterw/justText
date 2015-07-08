@@ -1,4 +1,4 @@
-angular.module('App', ['ui.router', 'ngSanitize'])
+angular.module('App', ['ui.router', 'textAngular', 'ngAnimate'])
 
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
 

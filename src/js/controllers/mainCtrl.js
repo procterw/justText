@@ -1,6 +1,8 @@
 angular.module("App")
 	.controller("MainCtrl", ["$scope", "$state", "UserService", "NoteService", function($scope, $state, UserService, NoteService) {
 
+		$scope.isLoading = true;
+
 		// search terms
 		$scope.searchString = "";
 
@@ -8,6 +10,16 @@ angular.module("App")
 
 		$scope.notebookName = {
 			name: ""
+		};
+
+		$scope.notebookTally = function(title) {
+			if (!$scope.user) return;
+			if (title === "all") return $scope.user.notes.length;
+			var count = 0;
+			for (var i=0; i<$scope.user.notes.length; i++) {
+				if ($scope.user.notes[i].notebook === title) count++;
+			}
+			return (count);
 		};
 
 		$scope.openNote = function(note,id) {
@@ -46,6 +58,7 @@ angular.module("App")
 
 		$scope.deleteNotebook = function(notebook, i) {
 			if (notebook.title == $scope.notebook.title) $scope.notebook = { title: "" };
+			$scope.user.notebooks.splice(i, 1);
 			UserService.deleteNotebook(notebook, i);
 		};
 
@@ -65,6 +78,7 @@ angular.module("App")
 			if(Parse.User.current() && !$scope.user) {
 				UserService.buildModel(Parse.User.current(), function(user) {
 					$scope.user = UserService.model;
+					$scope.isLoading = false;
 					$scope.$apply();
 				});
 			}

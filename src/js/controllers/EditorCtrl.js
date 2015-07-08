@@ -6,10 +6,7 @@ angular.module("App")
 		NoteService.buildModel($state.params.id, function(note) {
 			$scope.note = note;
 			$scope.isLoading = false;
-			// $scope.$apply();
 		});
-
-		
 
 		// When you go back, clear the time interval
 		// Save the note to the server and to the user model

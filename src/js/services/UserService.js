@@ -13,8 +13,8 @@ angular.module("App")
 			snip += " " + (c.textContent || c.innerText || "");
 		});
 		snip = snip.replace(/\s\s+/g, ' ');
-		snip = snip.substring(0,50);
-		if (snip.length > 49) snip += "...";
+		snip = snip.substring(0,200);
+		// if (snip.length > 49) snip += "...";
 		return snip;
 	}
 

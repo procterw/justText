@@ -1,0 +1,172 @@
+.ta-root {
+  height: 100%;
+  width: 900px;
+  margin: 50px auto;
+  position: relative;
+
+  .ta-toolbar {
+    z-index: 1000;
+    top: 35px;
+    position: fixed;
+    /*transition: top 0.3s;   */
+  }
+
+/*  .ta-toolbar.focussed {
+    top: 0px;
+  }
+*/
+  button {
+    border: none;
+    background-color: white;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: roboto;
+    color: $grey3;
+    /*margin: 2px;*/
+    padding: 5px 7px;
+  }
+
+  button[name=bold] {
+    font-weight: 700;
+  }
+
+  button[name=italics] {
+    font-weight: 700;
+    font-size: 13px;
+    font-style: italic;
+    padding: 4px 8px;
+    font-family: "Roboto Slab", serif;
+  }
+
+  button[name=underline] {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .btn-group {
+    @extend .paper;
+  }
+
+  .material-icons {
+    font-size: 14px;
+  }
+
+  button:hover {
+    background-color: #EEE;
+  }
+
+  .active {
+    background-color: #BBB;
+    color: white;
+  }
+
+  .active:hover {
+    background-color: #AAA;
+  }
+
+  button[disabled] {
+    background-color: #EEE;
+    color: #AAA;
+  }
+
+  .btn-group {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+}
+
+.ta-editor {
+  @extend .paper;
+  min-height: 500px;
+  overflow: auto;
+  z-index: 500;
+  position: absolute;
+  width: 100%;
+
+  div[contenteditable=true] {
+    outline: none;
+    min-height: 500px;
+    padding: 25px;
+    background-color: white;
+  }
+
+
+}
+
+/*.ta-editor {
+    min-height: 300px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin:20px 0;
+}*/
+
+.ta-hidden-input {
+  display: none;
+}
+
+
+
+
+
+
+
+
+.editor {
+
+  height: 100%;
+
+}
+/*
+  p, blockquote {
+    font-size: 18px;
+    line-height: 28px;
+    margin: 18px 0;
+  }
+
+  blockquote {
+    font-style: italic;
+    border-left: 2px solid rgb(200,200,200);
+    padding-left: 9px;
+    color: $light-color;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  .title {
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 15px 70px;
+    font: 100% $font-stack;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: $primary-color;
+  }
+
+  .title:focus, .title:hover {
+    background-color: rgb(245,245,245);
+  }
+
+}
+
+
+
+
+
+.angular-medium-editor {
+  background-color: rgb(255,255,255);
+  padding: 20px 70px;
+  min-height: 500px;
+}*/
